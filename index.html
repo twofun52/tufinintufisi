@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Yasemin için özel sayı">
+<meta property="og:title" content="Yasemin'in Günü">
+<meta property="og:description" content="Sadece Yasemin için · Özel sayı · 20 Kasım">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%81%3C/text%3E%3C/svg%3E">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}</style>
+<title>Yasemin'in Günü</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Figtree:wght@400;600;800&family=Caveat:wght@600&display=swap">
+<style>
+/* Layout: a "special issue" magazine cover that unfolds into a party — bold serif headlines, sticker accents, one big gift at the end */
+:root{
+  --paper:#FFE7E0; --paper-2:#FFD4CB; --ink:#2B0D1E; --ink-soft:#6B3A52;
+  --hot:#E3175A; --sun:#FFC23A; --mint:#5FC7AE; --card:#FFF6F2;
+  --display:"DM Serif Display", Georgia, "Times New Roman", serif;
+  --body:"Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --hand:"Caveat", "Comic Sans MS", cursive;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));overflow-x:hidden}
+.wrap{max-width:1040px;margin:0 auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0;line-height:1}
+.eyebrow{font-weight:800;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--hot)}
+.hand{font-family:var(--hand);font-size:1.6rem;color:var(--ink-soft);line-height:1.1}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--hot);outline-offset:3px}
+section{padding-block:72px}
+.music{position:fixed;z-index:40;right:calc(16px + env(safe-area-inset-right, 0px));bottom:calc(16px + env(safe-area-inset-bottom, 0px));
+  display:flex;align-items:center;gap:10px;border:3px solid var(--ink);background:var(--card);color:var(--ink);border-radius:999px;padding:10px 16px 10px 12px;
+  font-weight:800;font-size:.85rem;box-shadow:4px 4px 0 var(--ink);transition:transform .15s, box-shadow .15s, background .2s}
+.music:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.music.on{background:var(--ink);color:var(--paper)}
+.eq{display:flex;align-items:flex-end;gap:3px;height:18px}
+.eq i{width:4px;height:6px;border-radius:2px;background:var(--hot)}
+.music.on .eq i{animation:eq .9s ease-in-out infinite alternate}
+.music.on .eq i:nth-child(2){animation-delay:.2s}.music.on .eq i:nth-child(3){animation-delay:.45s}.music.on .eq i:nth-child(4){animation-delay:.1s}
+@keyframes eq{from{height:4px}to{height:18px}}
+.music.on .music-txt.hide{display:none}
+#confetti{position:fixed;inset:0;pointer-events:none;z-index:50;width:100%;height:100%}
+
+/* ---------- gate ---------- */
+.gate{min-height:100%;display:grid;place-items:center;text-align:center;padding-block:56px}
+.gate .lock{font-family:var(--display);font-size:clamp(3rem,13vw,7.5rem);line-height:.9}
+.gate .lock em{color:var(--hot)}
+.hack{margin-top:22px;display:inline-flex;align-items:center;gap:10px;border:3px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:13px 24px;font-weight:800;font-size:1rem;box-shadow:5px 5px 0 var(--hot);transition:transform .15s, box-shadow .15s}
+.hack:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--hot)}
+.hack:disabled{opacity:.6;cursor:wait;transform:none}
+.padlock{display:inline-block;font-size:1.2rem}
+.padlock.jig{animation:jig .5s ease-in-out}
+@keyframes jig{0%,100%{transform:rotate(0)}20%{transform:rotate(-22deg)}40%{transform:rotate(18deg)}60%{transform:rotate(-12deg)}80%{transform:rotate(8deg)}}
+.term{margin:22px auto 0;max-width:480px;text-align:left;background:var(--ink);color:#9FF0D6;border-radius:14px;overflow:hidden;font:600 .9rem/1.5 "Courier New",ui-monospace,monospace;box-shadow:0 18px 40px -20px rgba(43,13,30,.6)}
+.term-top{display:flex;align-items:center;gap:6px;padding:8px 12px;background:rgba(255,231,224,.08);color:var(--paper);font-size:.75rem;opacity:.85}
+.term-top i{width:10px;height:10px;border-radius:50%;background:var(--hot)}
+.term-top i:nth-child(2){background:var(--sun)}.term-top i:nth-child(3){background:var(--mint)}
+.term-top span{margin-left:6px}
+.term-line,.term-deny,.term-msg,.term-count{padding:0 16px}
+.term-line{padding-top:12px}
+.term-bar{margin:8px 16px;height:10px;border:1px solid #9FF0D6;border-radius:3px;padding:1px}
+.term-bar span{display:block;height:100%;width:0;background:#9FF0D6;border-radius:2px}
+.term-deny{color:#FF6B93;font-weight:800;min-height:1.5em}
+.term-msg{color:var(--paper);font-family:var(--body);font-size:1rem;font-weight:600;line-height:1.4;padding-top:4px;min-height:1.4em}
+.term-count{opacity:.55;font-size:.75rem;padding-top:8px;padding-bottom:14px}
+.count{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:36px 0 20px}
+.count div{background:var(--ink);color:var(--paper);border-radius:14px;min-width:84px;padding:14px 10px 10px}
+.count b{display:block;font-family:var(--display);font-size:2.6rem;font-weight:400;font-variant-numeric:tabular-nums;line-height:1}
+.count span{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;opacity:.75}
+
+/* ---------- cover ---------- */
+.cover{position:relative;padding-block:40px 64px}
+.masthead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;border-bottom:3px solid var(--ink);padding-bottom:10px}
+.masthead strong{font-family:var(--display);font-size:1.5rem;font-weight:400}
+.masthead span{font-weight:600;font-size:.85rem;letter-spacing:.06em}
+.cover-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:32px;align-items:center;margin-top:32px}
+.cover h1{font-size:clamp(3.2rem,11vw,7.6rem);letter-spacing:-.02em;line-height:.95;margin-top:18px}
+.cover h1 .i{font-style:italic;color:var(--hot)}
+.cover .lead{font-size:1.2rem;max-width:30ch;margin-top:20px}
+.photo{position:relative;background:var(--card);padding:12px 12px 48px;border-radius:4px;box-shadow:0 18px 40px -18px rgba(43,13,30,.45);transform:rotate(3deg)}
+.photo .ph{aspect-ratio:4/5;max-width:100%;border-radius:2px;display:grid;place-items:center;text-align:center;color:var(--ink-soft);font-weight:600;font-size:.9rem;padding:16px;
+  background:repeating-linear-gradient(135deg,var(--paper-2) 0 14px,var(--paper) 14px 28px)}
+.photo .cap{position:absolute;left:0;right:0;bottom:10px;text-align:center;font-family:var(--hand);font-size:1.5rem}
+.sticker{position:absolute;z-index:2;width:118px;height:118px;border-radius:50%;background:var(--sun);color:var(--ink);display:grid;place-items:center;text-align:center;
+  font-weight:800;font-size:.8rem;line-height:1.15;letter-spacing:.04em;text-transform:uppercase;transform:rotate(-12deg);box-shadow:0 6px 0 var(--ink)}
+.sticker b{display:block;font-family:var(--display);font-weight:400;font-size:2.4rem;letter-spacing:0;text-transform:none}
+.cover .sticker{top:-26px;left:-22px}
+
+/* ---------- word reveal ---------- */
+.words{background:var(--ink);color:var(--paper);margin-inline:calc(-1 * max(16px, env(safe-area-inset-left, 0px)));padding-inline:max(16px, env(safe-area-inset-left, 0px))}
+.words .wrap{display:grid;gap:8px}
+.words .w{font-family:var(--display);font-size:clamp(2.6rem,10vw,6.8rem);line-height:1;opacity:.18;transition:opacity .5s, color .5s, transform .5s}
+.words .w.on{opacity:1;transform:translateX(10px)}
+.words .w:nth-child(4).on{color:var(--sun)}
+.words .w:nth-child(5).on{color:var(--hot);font-style:italic}
+.words p{color:var(--paper);opacity:.8;max-width:52ch;margin-top:20px}
+.retro{display:block;max-width:560px;margin-top:32px;background:var(--paper);color:var(--ink);text-decoration:none;border:3px solid var(--paper);border-radius:10px;overflow:hidden;box-shadow:8px 8px 0 var(--hot);transform:rotate(-1deg);transition:transform .25s, box-shadow .25s}
+.retro:hover{transform:rotate(0) translate(-3px,-3px);box-shadow:12px 12px 0 var(--sun)}
+.retro-bar{display:flex;align-items:center;gap:6px;background:linear-gradient(90deg,#1C3F9E,#3A78D8);color:#fff;padding:7px 10px;font:600 .78rem/1 "Courier New",monospace}
+.retro-bar i{width:11px;height:11px;border-radius:2px;background:#D9D9D9;border:1px solid #fff}
+.retro-bar em{font-style:normal;margin-left:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.retro-body{display:grid;gap:10px;padding:20px}
+.retro-tag{justify-self:start;background:var(--sun);font-weight:800;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 10px;border-radius:4px}
+.retro-title{font-family:var(--display);font-size:clamp(1.6rem,5vw,2.2rem);line-height:1.05}
+.retro-text{color:var(--ink-soft);font-size:1rem}
+.retro-load{height:14px;border:2px solid var(--ink);border-radius:3px;padding:2px;background:#fff}
+.retro-load span{display:block;height:100%;width:14%;background:repeating-linear-gradient(90deg,#3A78D8 0 8px,transparent 8px 11px);animation:load 2.8s steps(14) infinite}
+@keyframes load{to{width:100%}}
+.retro-btn{justify-self:start;background:var(--ink);color:var(--paper);font-weight:800;padding:12px 20px;border-radius:999px;letter-spacing:.02em}
+.retro:hover .retro-btn{background:var(--hot)}
+.words-h{font-size:clamp(2.4rem,8vw,5rem);color:var(--paper)}
+.kid .cal{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:640px}
+.day{background:var(--card);border:3px solid var(--ink);border-radius:16px;padding:16px;display:grid;gap:2px}
+.day b{font-family:var(--display);font-weight:400;font-size:clamp(3rem,10vw,5rem);line-height:.9}
+.day span{font-weight:800;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.day p{margin:10px 0 0;font-weight:600;line-height:1.25}
+.day small{color:var(--ink-soft);font-weight:600}
+.day.kidday{background:var(--mint)}
+.day.star{background:var(--hot);color:#fff;transform:rotate(2deg);box-shadow:6px 6px 0 var(--ink)}
+.day.star span,.day.star small{color:#fff;opacity:.85}
+.kid-note{margin-top:18px}
+.interview{margin-top:40px;background:var(--ink);color:var(--paper);border-radius:22px;padding:28px}
+.int-head{display:flex;gap:16px;align-items:center;margin-bottom:22px}
+.mic{font-size:2.4rem;width:64px;height:64px;border-radius:50%;background:var(--sun);display:grid;place-items:center;flex:none}
+.int-head h3{font-size:clamp(1.8rem,5vw,2.6rem)}
+.int-head .eyebrow{color:var(--sun)}
+.qa{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.qa > div{min-width:0}
+.qa .ask{margin:0;font-weight:800}
+.qa .ans{margin:8px 0 0;background:var(--paper);color:var(--ink);font-family:var(--hand);font-size:1.5rem;line-height:1.15;padding:12px 16px;border-radius:18px 18px 18px 4px}
+.fridge{position:relative;margin-top:40px;background:linear-gradient(100deg,#DCEFEA,#C3E4DB 60%,#D6ECE6);border:3px solid var(--ink);border-radius:28px;padding:28px 20px 40px;overflow:hidden}
+.fridge::after{content:"";position:absolute;right:22px;top:30%;width:14px;height:110px;border-radius:7px;background:var(--ink);opacity:.85}
+.magnets{display:flex;gap:6px;justify-content:center}
+.magnets span{font-family:var(--display);font-size:2.4rem;line-height:1;padding:4px 10px;border-radius:10px;color:#fff;box-shadow:0 4px 0 rgba(43,13,30,.35)}
+.magnets span:nth-child(1){background:var(--hot);transform:rotate(-8deg)}
+.magnets span:nth-child(2){background:var(--sun);color:var(--ink);transform:rotate(5deg)}
+.magnets span:nth-child(3){background:#4A6CF0;transform:rotate(-3deg)}
+.magnets span:nth-child(4){background:var(--ink);transform:rotate(9deg)}
+.fridge-label{text-align:center;font-weight:800;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-top:14px}
+.tape{position:absolute;width:90px;height:26px;background:rgba(255,194,58,.75);top:-12px}
+.tape.t1{left:-14px;transform:rotate(-28deg)}
+.tape.t2{right:-14px;transform:rotate(26deg);background:rgba(227,23,90,.55)}
+.heart-magnet{position:absolute;left:24px;bottom:22px;font-size:2.2rem;color:var(--hot);transform:rotate(-14deg);text-shadow:0 3px 0 rgba(43,13,30,.3)}
+.drawing{position:relative;margin:22px auto 0;max-width:420px;background:#fff;padding:14px 14px 10px;border-radius:4px;box-shadow:0 18px 40px -18px rgba(43,13,30,.45);transform:rotate(-2deg);text-align:center}
+.drawing .ph{aspect-ratio:4/3;max-width:100%;display:grid;place-items:center;padding:16px;font-weight:600;color:var(--ink-soft);border:3px dashed var(--paper-2);border-radius:4px}
+.drawing figcaption{margin-top:8px}
+@media (max-width:760px){.qa{grid-template-columns:1fr}.interview{padding:20px}.kid .cal{gap:8px}.day{padding:12px 10px}}
+.pill{display:inline-block;margin-top:24px;background:var(--hot);color:#fff;border:0;border-radius:999px;padding:12px 22px;font-weight:800;letter-spacing:.04em}
+
+/* ---------- since counter ---------- */
+.since h2{font-size:clamp(2.2rem,6vw,3.6rem)}
+.since-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.since-row div{border-top:3px solid var(--ink);padding-top:10px}
+.since-row b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(2rem,6vw,3.4rem);font-variant-numeric:tabular-nums;line-height:1.05}
+.since-row span{font-size:.8rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+.since .hand{margin-top:22px}
+
+.pimg{display:block;width:100%;aspect-ratio:4/5;max-width:100%;object-fit:cover;border-radius:2px}
+.saga-lead{color:var(--sun);font-weight:800;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;margin:24px 0 0;opacity:1}
+.saga{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:44px;align-items:start}
+.saga-pic{margin:0;background:var(--card);color:var(--ink);padding:10px 10px 16px;border-radius:4px;min-width:0}
+.saga-pic:nth-child(1){transform:rotate(-2deg)}
+.saga-pic:nth-child(2){transform:rotate(1.5deg)}
+.saga-pic img{display:block;width:100%;aspect-ratio:4/5;max-width:100%;object-fit:cover;border-radius:2px}
+.saga-pic figcaption{display:grid;gap:4px;margin-top:12px;padding-inline:4px;font-size:.95rem}
+.saga-no{font-weight:800;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--hot)}
+.saga-quote{font-family:var(--hand);font-size:1.35rem;line-height:1.15}
+.saga-now{display:grid;gap:10px;align-content:center;align-self:stretch;border:3px dashed var(--sun);border-radius:16px;padding:24px;color:var(--paper)}
+.saga-now .saga-no{color:var(--sun)}
+.saga-now b{font-family:var(--display);font-weight:400;font-size:clamp(2rem,4vw,2.6rem);line-height:1.05}
+.saga-now span:last-child{opacity:.8}
+.hire{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:24px;align-items:center;margin-top:40px}
+.hire-card{background:var(--ink);color:var(--paper);border-radius:20px;padding:24px;display:grid;gap:12px;min-width:0}
+.hire-card .retro-tag{color:var(--ink)}
+.hire-card h3{font-size:clamp(2rem,5vw,2.8rem)}
+.hire-card dl{margin:0;display:grid;gap:8px}
+.hire-card dl div{display:grid;grid-template-columns:7.5em 1fr;gap:10px;border-top:1px solid rgba(255,231,224,.2);padding-top:8px}
+.hire-card dt{font-weight:800;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sun);padding-top:3px}
+.hire-card dd{margin:0}
+.hire .photo{margin:0;padding:10px 10px 42px}
+.hire-1{transform:rotate(-3deg)}.hire-2{transform:rotate(2.5deg)}
+.hire-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
+.hire-strip .photo{margin:0;padding:10px 10px 42px}
+.hire-strip .photo:nth-child(1){transform:rotate(1.5deg)}
+.hire-strip .photo:nth-child(2){transform:rotate(-2deg)}
+.hire-strip .photo:nth-child(3){transform:rotate(2.5deg)}
+@media (max-width:600px){.hire-strip{grid-template-columns:1fr 1fr}.hire-strip .photo:nth-child(3){grid-column:1 / -1;max-width:60%;justify-self:center}}
+@media (max-width:860px){
+  .saga{grid-template-columns:1fr 1fr}
+  .saga-now{grid-column:1 / -1}
+  .hire{grid-template-columns:1fr 1fr}
+  .hire-card{grid-column:1 / -1}
+}
+@media (max-width:480px){.saga{grid-template-columns:1fr}.saga-pic{max-width:340px;justify-self:center}}
+
+/* ---------- film ---------- */
+.film{position:relative;background:var(--ink);border-radius:18px;padding:30px 0;overflow:hidden}
+.film::before,.film::after{content:"";position:absolute;left:0;right:0;height:12px;
+  background:repeating-linear-gradient(90deg,transparent 0 10px,var(--paper) 10px 24px,transparent 24px 34px);opacity:.9;border-radius:2px}
+.film::before{top:9px}.film::after{bottom:9px}
+.film-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px max(24px, calc(50% - 150px));scrollbar-width:none;cursor:grab;outline:none}
+.film-track::-webkit-scrollbar{display:none}
+.film-track.drag{cursor:grabbing;scroll-snap-type:none;user-select:none}
+.film-track:focus-visible{box-shadow:inset 0 0 0 3px var(--sun)}
+.frame{flex:0 0 clamp(210px,62vw,300px);margin:0;scroll-snap-align:center;background:var(--card);border-radius:6px;padding:10px 10px 14px;
+  transform:scale(.88);opacity:.55;transition:transform .35s, opacity .35s}
+.frame.on{transform:scale(1);opacity:1}
+.shot{aspect-ratio:4/5;max-width:100%;border-radius:3px;overflow:hidden;background:var(--paper-2)}
+.shot img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.shot .ph{height:100%;display:grid;place-items:center;font-weight:600;color:var(--ink-soft);
+  background:repeating-linear-gradient(135deg,var(--paper-2) 0 14px,var(--paper) 14px 28px)}
+.frame figcaption{display:grid;gap:2px;margin-top:10px;padding-inline:4px}
+.frame figcaption b{font-family:var(--display);font-weight:400;font-size:1.7rem;line-height:1;font-variant-numeric:tabular-nums}
+.frame figcaption .hand{font-size:1.35rem}
+.frame.key figcaption b{color:var(--hot)}
+.film-ctrl{display:flex;align-items:center;gap:10px}
+.film-ctrl button{width:48px;height:48px;border-radius:50%;border:3px solid var(--ink);background:var(--card);color:var(--ink);font-size:1.3rem;font-weight:800;transition:background .2s, transform .15s}
+.film-ctrl button:hover{background:var(--sun);transform:translateY(-2px)}
+.film-ctrl b{font-family:var(--display);font-weight:400;font-size:1.6rem;min-width:5ch;text-align:center;font-variant-numeric:tabular-nums}
+.film-prog{height:6px;background:var(--paper-2);border-radius:3px;margin-top:14px;overflow:hidden}
+.film-prog span{display:block;height:100%;width:0;background:var(--hot);border-radius:3px;transition:width .15s}
+
+/* ---------- reasons ---------- */
+.head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+.head h2{font-size:clamp(2.2rem,6vw,3.6rem)}
+.head .meta{font-weight:600;color:var(--ink-soft)}
+.meta b{color:var(--hot);font-variant-numeric:tabular-nums}
+.reasons{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.flip{perspective:900px;border:0;background:none;padding:0;aspect-ratio:3/4;max-width:100%;text-align:left}
+.flip .in{position:relative;width:100%;height:100%;transition:transform .6s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d}
+.flip.open .in{transform:rotateY(180deg)}
+.flip .f,.flip .b{position:absolute;inset:0;backface-visibility:hidden;border-radius:14px;padding:16px;display:flex;flex-direction:column;justify-content:space-between}
+.flip .f{background:var(--hot);color:#fff}
+.flip:nth-child(3n+2) .f{background:var(--ink);color:var(--paper)}
+.flip:nth-child(3n) .f{background:var(--mint);color:var(--ink)}
+.flip .f b{font-family:var(--display);font-weight:400;font-size:3.2rem;line-height:1}
+.flip .f small{font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-size:.72rem}
+.flip .b{background:var(--card);color:var(--ink);transform:rotateY(180deg);border:2px solid var(--ink);font-family:var(--hand);font-size:1.45rem;line-height:1.15;justify-content:center}
+
+/* ---------- quiz ---------- */
+.quiz-box{background:var(--card);border:3px solid var(--ink);border-radius:20px;padding:28px;box-shadow:8px 8px 0 var(--ink);max-width:720px}
+.quiz-box .q{font-family:var(--display);font-size:clamp(1.6rem,4.5vw,2.2rem);line-height:1.1;margin:8px 0 20px}
+.opts{display:grid;gap:10px}
+.opt{border:2px solid var(--ink);background:var(--paper);border-radius:12px;padding:12px 16px;text-align:left;font-weight:600;color:var(--ink);transition:transform .15s, background .2s}
+.opt:hover{transform:translateX(4px)}
+.opt.ok{background:var(--mint)}
+.opt.no{background:var(--paper-2);text-decoration:line-through;opacity:.7}
+.reward{margin-top:18px;font-family:var(--hand);font-size:1.6rem;color:var(--hot);min-height:1.8em}
+.dots{display:flex;gap:6px}
+.dots i{width:28px;height:6px;border-radius:3px;background:var(--paper-2)}
+.dots i.done{background:var(--hot)}
+
+/* ---------- gallery ---------- */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.strip .photo{padding:10px 10px 42px}
+.strip .photo:nth-child(odd){transform:rotate(-2.5deg)}
+.strip .photo:nth-child(even){transform:rotate(2deg)}
+.strip .photo .cap{font-size:1.3rem}
+
+/* ---------- gift ---------- */
+.finale{text-align:center}
+.finale h2{font-size:clamp(2.4rem,7vw,4.4rem)}
+.finale-grid{display:grid;grid-template-columns:1fr;justify-items:center;gap:40px;margin-top:28px;align-items:end}
+.finale.open .finale-grid{grid-template-columns:1fr 1fr}
+.gift-col,.cake-col{display:grid;justify-items:center;gap:16px;min-width:0;max-width:100%}
+.gift-stage{padding-top:0;transition:padding-top 1s cubic-bezier(.2,.8,.2,1)}
+.finale.open .gift-stage{padding-top:min(250px,62vw)}
+.gift{border:0;background:none;padding:0;width:min(240px,62vw);display:block;transition:transform .3s;cursor:pointer}
+.gift:hover{transform:rotate(-4deg) scale(1.04)}
+.finale.open .gift{cursor:default}
+.finale.open .gift:hover{transform:none}
+.gift.shake{animation:shake .5s ease-in-out infinite}
+.gift.nope{animation:nope .5s ease-in-out}
+@keyframes nope{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-10px)}40%,80%{transform:translateX(10px)}}
+.gift:not(.shake){filter:saturate(.75)}
+.finale.open .gift{filter:none}
+.quiz-sub{margin:10px 0 0;max-width:40ch}
+@keyframes shake{0%,100%{transform:rotate(0)}25%{transform:rotate(-6deg)}75%{transform:rotate(6deg)}}
+.gift svg{width:100%;height:auto;display:block;overflow:visible}
+.stem{fill:none;stroke:#2F7D5B;stroke-width:3.2;stroke-linecap:round;transition:stroke-dashoffset 1.1s cubic-bezier(.3,.7,.3,1)}
+.leaf{fill:#3E9A6F;transform-box:fill-box;transform-origin:0 50%;transform:scale(0);transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.bloom{transform-box:fill-box;transform-origin:center;transform:scale(0) rotate(-60deg);transition:transform .7s cubic-bezier(.3,1.5,.5,1)}
+.bloomed .leaf{transform:scale(1)}
+.bloomed .bloom{transform:scale(1) rotate(0)}
+.bloomed .sway{animation:sway 4s ease-in-out 2.4s infinite alternate}
+.sway{transform-box:view-box;transform-origin:100px 110px}
+@keyframes sway{from{transform:rotate(-2.5deg)}to{transform:rotate(2.5deg)}}
+.flower-note{max-width:30ch;margin:0;font-family:var(--hand);font-size:1.6rem;line-height:1.15;color:var(--ink);display:grid;gap:4px}
+.flower-note .eyebrow{font-family:var(--body);font-size:.72rem}
+.cake{width:min(260px,70vw);height:auto;overflow:visible}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flick .45s ease-in-out infinite alternate;transition:opacity .3s, transform .3s}
+@keyframes flick{from{transform:scale(1,1) skewX(-3deg)}to{transform:scale(.88,1.12) skewX(4deg)}}
+.out .flame{animation:none;opacity:0;transform:scale(0)}
+.smoke{fill:none;stroke:#6B3A52;stroke-width:2.5;stroke-linecap:round;opacity:0}
+.out .smoke{animation:smoke 1.6s ease-out forwards}
+@keyframes smoke{0%{opacity:.7;transform:translateY(0)}100%{opacity:0;transform:translateY(-26px)}}
+.cake-line{max-width:32ch;margin:0;font-size:1.1rem;font-weight:600}
+.blow{border:3px solid var(--ink);background:var(--sun);color:var(--ink);border-radius:999px;padding:12px 22px;font-weight:800;box-shadow:4px 4px 0 var(--ink);transition:transform .15s, box-shadow .15s}
+.blow:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink)}
+.blow:disabled{opacity:.5;transform:none;box-shadow:none;cursor:default}
+.wish{margin:0;min-height:1.3em;color:var(--hot);font-size:1.7rem}
+.finale.open .cake-col{animation:rise .8s cubic-bezier(.2,.8,.2,1) .9s both}
+@keyframes rise{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.reveal{max-width:620px;margin:48px auto 0}
+.reveal h3{font-size:clamp(3rem,11vw,6.5rem);color:var(--hot);font-style:italic}
+.reveal p{font-size:1.15rem}
+@media (max-width:760px){.finale.open .finale-grid{grid-template-columns:1fr}}
+footer{border-top:3px solid var(--ink);padding-block:20px 40px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:.85rem;font-weight:600;color:var(--ink-soft)}
+
+@media (max-width:760px){
+  .count{gap:8px}.count div{min-width:0;flex:1 1 0;padding:12px 4px 8px}.count b{font-size:2rem}.count span{font-size:.6rem;letter-spacing:.08em}
+  .cover-grid{grid-template-columns:1fr}
+  .cover .photo{max-width:340px;margin:20px auto 0}
+  .reasons,.strip{grid-template-columns:repeat(2,1fr)}
+  .since-row{grid-template-columns:repeat(2,1fr)}
+  .quiz-box{padding:20px;box-shadow:5px 5px 0 var(--ink)}
+  section{padding-block:56px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+
+<canvas id="confetti" aria-hidden="true"></canvas>
+<button class="music" id="music" type="button" aria-pressed="false" aria-label="Müziği aç">
+  <span class="eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <span class="music-txt" id="music-txt">Müzik için dokun</span>
+</button>
+
+<!-- ===================== KAPI (20 Kasım'a kadar) ===================== -->
+<div id="gate" class="gate" hidden>
+  <div>
+    <div class="eyebrow">Sadece Yasemin için · özel sayı</div>
+    <div class="lock">Henüz <em>erken</em>,<br>sevgilim.</div>
+    <div class="count" aria-live="polite">
+      <div><b id="g-d">00</b><span>gün</span></div>
+      <div><b id="g-h">00</b><span>saat</span></div>
+      <div><b id="g-m">00</b><span>dakika</span></div>
+      <div><b id="g-s">00</b><span>saniye</span></div>
+    </div>
+    <p class="hand">20 Kasım gece yarısı bu kapı açılacak. Sakın erken gelme 🙂</p>
+    <button class="hack" id="hack" type="button"><span class="padlock" id="padlock" aria-hidden="true">🔒</span> Kilidi hackle, beklemeden gir</button>
+    <div class="term" id="term" hidden aria-live="polite">
+      <div class="term-top"><i></i><i></i><i></i><span>yasemin@ozel-sayi:~</span></div>
+      <div class="term-line" id="term-l1"></div>
+      <div class="term-bar"><span id="term-bar"></span></div>
+      <div class="term-deny" id="term-deny"></div>
+      <div class="term-msg" id="term-msg"></div>
+      <div class="term-count" id="term-count"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SİTE ===================== -->
+<main id="site" hidden>
+  <div class="wrap">
+
+    <!-- KAPAK -->
+    <header class="cover">
+      <div class="masthead">
+        <strong>Tufinin &amp; Tufisi</strong>
+        <span>Özel sayı · 20 Kasım 2026</span>
+      </div>
+      <div class="cover-grid">
+        <div>
+          <div class="eyebrow">Bugünün manşeti</div>
+          <h1>İyi ki<br><span class="i">doğdun,</span><br>Yasemin</h1>
+          <p class="lead">Biliyorsun, özel günleri, partileri, sürpriz kutlamaları pek sevmem. Ama söz konusu sen olunca kurallarımı bu seferlik rafa kaldırdım ve sana bildiğim yerden bir hediye hazırladım: birkaç bin satır kod, bolca sevgi.</p>
+        </div>
+        <figure class="photo" style="margin:0;position:relative">
+          <div class="sticker"><span><b>20</b>Kasım</span></div>
+          <img class="pimg" src="img/gul.jpg" alt="Yasemin, elinde bir gülle" style="object-position:50% 40%">
+          <figcaption class="cap">doğum günü kızı</figcaption>
+        </figure>
+      </div>
+    </header>
+  </div>
+
+  <!-- KELİMELER: eski sitenin menüsü -->
+  <section class="words" id="words">
+    <div class="wrap">
+      <div class="eyebrow" style="color:var(--sun)">Bir isim, dört eser</div>
+      <h2 class="words-h">Tufinin &amp; Tufisi'nin kısa tarihi</h2>
+      <p class="saga-lead">Eser 1 · Eski sitemizi hatırlıyor musun?</p>
+      <a class="retro" href="https://tufanakturk.wixsite.com/tufinintufisi" target="_blank" rel="noopener">
+        <span class="retro-bar"><i></i><i></i><i></i><em>2012</em></span>
+        <span class="retro-body">
+          <span class="retro-tag">⚠ Tarihi eser · dokunmayın, sadece bakın</span>
+          <span class="retro-title">Junior IT Tufan'ın ilk başyapıtı 🙈</span>
+          <span class="retro-text">14 yıl önce, kodun ne olduğunu yeni yeni öğrenirken sana bir site yapmıştım: hazır şablon, kodu sıfır ama emek tam 😄 O günden beri ben junior'dan senior'a terfi ettim; sen ise hep "aşkım" pozisyonunda kaldın, orada rakipsizsin.</span>
+          <span class="retro-load" aria-hidden="true"><span></span></span>
+          <span class="retro-btn">Zaman makinesine bin →</span>
+        </span>
+      </a>
+      <div class="saga">
+        <figure class="saga-pic">
+          <img src="img/dugun-arabasi.jpg" alt="Arka camında Yasemin Tufan ve Tufinin Tufisi yazan düğün arabası" loading="lazy" style="aspect-ratio:10/7">
+          <figcaption><span class="saga-no">Eser 2 · Düğün arabası</span><span>Bilgi güvenliği benim için hep önemliydi, ama arka cama da yazdırdık. Bütün şehir öğrensin diye 😄</span></figcaption>
+        </figure>
+        <figure class="saga-pic">
+          <img src="img/kitap.jpg" alt="Tufinin Tufisi kitabının kapağı" loading="lazy" style="object-position:50% 40%">
+          <figcaption><span class="saga-no">Eser 3 · Kitap</span><span class="saga-quote">"Masal olsa da her şey, gerçektir aslında yaşananlar… Çünkü, aşktır masalları gerçek kılan…"</span></figcaption>
+        </figure>
+        <div class="saga-now">
+          <span class="saga-no">Eser 4 · Şu an okuduğun site</span>
+          <b>Junior IT artık senior.</b>
+          <span>Bu sefer hazır şablon yok, reklam yok. Sadece sen varsın 😊</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <!-- SAYAÇ -->
+    <section class="since">
+      <div class="eyebrow">14.07.2017'den beri</div>
+      <h2>Evli geçen zaman</h2>
+      <div class="since-row">
+        <div><b id="s-y">0</b><span>yıl</span></div>
+        <div><b id="s-d">0</b><span>gün</span></div>
+        <div><b id="s-h">0</b><span>saat</span></div>
+        <div><b id="s-m">0</b><span>dakika</span></div>
+      </div>
+      <p class="hand">…ve sen bu satırı okurken sayaç hâlâ işliyor.</p>
+    </section>
+
+    <!-- KIZIMIZ -->
+    <section class="kid">
+      <div class="head">
+        <div>
+          <div class="eyebrow">Ekibin en küçük üyesi aramıza katıldı · 17.11.2018</div>
+          <h2>Kasım bizim ayımız</h2>
+        </div>
+      </div>
+      <div class="cal">
+        <div class="day kidday"><b>17</b><span>Kasım</span><p>Kızımız geldi<br><small>2018</small></p></div>
+        <div class="day star"><b>20</b><span>Kasım</span><p>Ve sen<br><small>bugün</small></p></div>
+      </div>
+      <p class="hand kid-note">Bir ayda iki kutlama. Biraz yoruluyoruz ama şikayetçi değiliz 😄</p>
+
+      <div class="hire">
+        <div class="hire-card">
+          <span class="retro-tag">Yeni işe alım</span>
+          <h3>Junior IT 2.0</h3>
+          <dl>
+            <div><dt>Pozisyon</dt><dd>Babasının stajyeri</dd></div>
+            <div><dt>Başlangıç</dt><dd>17.11.2018</dd></div>
+            <div><dt>Uzmanlık</dt><dd>Mouse'a vurmak, Google'a ilk aramayı yapmak</dd></div>
+            <div><dt>Maaş</dt><dd>Sınırsız sarılma</dd></div>
+          </dl>
+        </div>
+        <figure class="photo hire-1"><img class="pimg" src="img/bebek-laptop.jpg" alt="Bebekken laptopun başında" loading="lazy" style="object-position:50% 55%"><figcaption class="cap">ilk gün</figcaption></figure>
+        <figure class="photo hire-2"><img class="pimg" src="img/google.jpg" alt="Küçükken klavyede yazarken" loading="lazy" style="object-position:60% 40%"><figcaption class="cap">ilk Google araması</figcaption></figure>
+      </div>
+      <div class="hire-strip">
+        <figure class="photo"><img class="pimg" src="img/baba-kiz-pc.jpg" alt="Babasıyla yan yana bilgisayar başında" loading="lazy" style="object-position:50% 45%"><figcaption class="cap">artık aynı masadayız</figcaption></figure>
+        <figure class="photo"><img class="pimg" src="img/gunes.jpg" alt="Gün batımında güneşi tutuyormuş gibi poz veriyor" loading="lazy" style="object-position:60% 35%"><figcaption class="cap">güneşi bile tutuyor</figcaption></figure>
+        <figure class="photo"><img class="pimg" src="img/amut.jpg" alt="Salonda amuda kalkıyor" loading="lazy" style="object-position:55% 55%"><figcaption class="cap">mesai dışı: jimnastik</figcaption></figure>
+      </div>
+
+      <div class="fridge">
+        <div class="magnets" aria-label="ANNE"><span>A</span><span>N</span><span>N</span><span>E</span></div>
+        <div class="fridge-label">Evimizin en değerli sanat galerisi: buzdolabı kapısı</div>
+        <figure class="drawing">
+          <i class="tape t1"></i><i class="tape t2"></i>
+          <div class="ph">Buraya kızımızın çizdiği resim gelecek</div>
+          <figcaption class="hand">Küçük ressamımızdan, sevgiyle</figcaption>
+        </figure>
+        <span class="heart-magnet" aria-hidden="true">♥</span>
+      </div>
+    </section>
+
+    <!-- FİLM ŞERİDİ -->
+    <section class="film-sec">
+      <div class="head">
+        <div>
+          <div class="eyebrow">Kaydır · 2012'den bugüne</div>
+          <h2>Bizim filmimiz</h2>
+        </div>
+        <div class="film-ctrl">
+          <button type="button" id="f-prev" aria-label="Önceki sahne">←</button>
+          <b id="f-year">1 / 13</b>
+          <button type="button" id="f-next" aria-label="Sonraki sahne">→</button>
+        </div>
+      </div>
+      <div class="film">
+        <div class="film-track" id="film" tabindex="0" aria-label="Fotoğraflarımız"></div>
+      </div>
+      <div class="film-prog" aria-hidden="true"><span id="f-prog"></span></div>
+    </section>
+
+    <!-- SINAV -->
+    <section>
+      <div class="head">
+        <div>
+          <div class="eyebrow">Küçük bir sınav</div>
+          <h2>Bizi ne kadar iyi tanıyorsun?</h2>
+          <p class="hand quiz-sub">Kural basit: sınavı geçersen hediyen aşağıda seni bekliyor 🎁 Geçemezsen… kutu kilitli kalır 😏</p>
+        </div>
+        <div class="dots" id="dots"></div>
+      </div>
+      <div class="quiz-box" id="quiz">
+        <div class="eyebrow" id="q-no">Soru 1</div>
+        <div class="q" id="q-text"></div>
+        <div class="opts" id="q-opts"></div>
+        <div class="reward" id="q-reward" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- FİNAL -->
+    <section class="finale" id="finale">
+      <div class="eyebrow">Son sayfa</div>
+      <h2>Bir kutu seni bekliyor</h2>
+      <p class="hand" id="gift-hint">🔒 Kutu kilitli. Önce sınavı geçmen lazım.</p>
+      <div class="finale-grid">
+        <div class="gift-col">
+          <div class="gift-stage" id="stage">
+            <button class="gift" id="gift" type="button" aria-label="Hediye kutusunu aç">
+              <svg viewBox="0 0 200 200" aria-hidden="true">
+                <g id="bouquet"></g>
+                <g id="lid">
+                  <rect x="22" y="58" width="156" height="34" rx="6" fill="#E3175A" stroke="#2B0D1E" stroke-width="5"/>
+                  <rect x="88" y="58" width="24" height="34" fill="#FFC23A" stroke="#2B0D1E" stroke-width="5"/>
+                  <path d="M100 58 C70 20 40 40 60 58 Z" fill="#FFC23A" stroke="#2B0D1E" stroke-width="5"/>
+                  <path d="M100 58 C130 20 160 40 140 58 Z" fill="#FFC23A" stroke="#2B0D1E" stroke-width="5"/>
+                </g>
+                <rect x="34" y="92" width="132" height="92" rx="6" fill="#E3175A" stroke="#2B0D1E" stroke-width="5"/>
+                <rect x="88" y="92" width="24" height="92" fill="#FFC23A" stroke="#2B0D1E" stroke-width="5"/>
+              </svg>
+            </button>
+          </div>
+          <p class="flower-note" id="flower-note" hidden><span class="eyebrow">Çiçeğin</span>Bu sefer çiçeğim dijital. Hiç solmayacak, her açtığında yeniden açacak 🌸</p>
+        </div>
+        <div class="cake-col" id="cake-col" hidden>
+          <svg class="cake" id="cake" viewBox="0 0 220 210" aria-hidden="true">
+            <ellipse cx="110" cy="192" rx="96" ry="12" fill="#2B0D1E" opacity=".15"/>
+            <ellipse cx="110" cy="186" rx="92" ry="12" fill="#FFF6F2" stroke="#2B0D1E" stroke-width="4"/>
+            <rect x="30" y="122" width="160" height="62" rx="8" fill="#E3175A" stroke="#2B0D1E" stroke-width="4"/>
+            <path d="M30 132 h160 v8 c-8 0-8 12-16 12s-8-12-16-12-8 16-16 16-8-16-16-16-8 10-16 10-8-10-16-10-8 14-16 14-8-14-16-14-8 10-16 10-8-10-16-10 z" fill="#FFF6F2" stroke="#2B0D1E" stroke-width="3" stroke-linejoin="round"/>
+            <g fill="#FFC23A"><circle cx="50" cy="168" r="4"/><circle cx="82" cy="172" r="4"/><circle cx="114" cy="166" r="4"/><circle cx="146" cy="172" r="4"/><circle cx="174" cy="166" r="4"/></g>
+            <rect x="52" y="80" width="116" height="46" rx="8" fill="#FFD4CB" stroke="#2B0D1E" stroke-width="4"/>
+            <path d="M52 90 h116 v6 c-7 0-7 10-14 10s-7-10-14-10-7 12-14 12-7-12-14-12-7 8-14 8-7-8-14-8-7 12-14 12-7-12-14-12z" fill="#FFF6F2" stroke="#2B0D1E" stroke-width="3" stroke-linejoin="round"/>
+            <g id="candles"></g>
+          </svg>
+          <p class="cake-line">Yeni yaşın, bugüne kadarki en güzel yaşın olsun. Benim dileğim 14 yıl önce gerçekleşti, şimdi sıra sende.</p>
+          <button class="blow" id="blow" type="button">Dilek tut, mumları üfle</button>
+          <p class="hand wish" id="wish" aria-live="polite"></p>
+        </div>
+      </div>
+      <div class="reveal" id="reveal" hidden>
+        <h3>İyi ki varsın.</h3>
+        <p>On dört yıl önce başlayan cümleyi her yıl biraz daha uzatmaya devam edeceğiz.</p>
+      </div>
+    </section>
+
+    <footer>
+      <span>Tufan'dan Yasemin'e, sevgiyle</span>
+      <span>Kuruluş: 03.11.2012</span>
+    </footer>
+  </div>
+</main>
+
+<script>
+(function(){
+  /* ==================== DÜZENLENECEK İÇERİK ==================== */
+  var DOGUM_GUNU = new Date('2026-11-20T00:00:00+03:00');
+  var BASLANGIC  = new Date('2017-07-14T00:00:00+03:00');
+  var TANISMA    = new Date('2012-11-03T00:00:00+03:00');
+
+  var SAHNELER = [
+    { foto:'kafe',         not:'Kitabın kapağına giren o akşam' },
+    { foto:'duvar',        not:'Sen bana bakıyorsun, ben poz veriyorum' },
+    { foto:'siyahbeyaz',   not:'Siyah beyaz ama içi rengârenk' },
+    { foto:'deniz',        not:'Deniz, güneş ve sen' },
+    { foto:'araba',        not:'Şoför ben, neşe sen' },
+    { foto:'vogue',        not:'Havalı mod: 10 üzerinden 11', pos:'50% 35%' },
+    { foto:'bahce',        not:'Her yeşil yerde bir selfie' },
+    { foto:'sari-mont',    not:'Ve kadro üç kişi oldu', key:true },
+    { foto:'aile-esek',    not:'Üç kişilik masa, bir peluş eşek', pos:'55% 45%' },
+    { foto:'orman-ciglik', not:'Bu ikisiyle başa çıkan kahraman: sen', pos:'50% 65%' },
+    { foto:'orman-bakis',  not:'Biz ağaçlara bakıyoruz, sen bize', pos:'40% 75%' },
+    { foto:'aile-bugun',   not:'Balonlar, bayraklar ve en tatlı kadro' },
+    { foto:'bugun',        not:'Ve bugün: 14 yıl sonra hâlâ yan yana', key:true, pos:'55% 40%' }
+  ];
+
+  var SORULAR = [
+    { q:'Her şey hangi tarihte başladı?',
+      o:['14.02.2013','03.11.2012','20.11.2012'], a:1,
+      r:'Doğru! O gün hayatımın en güzel günüydü.' }
+  ];
+  /* ============================================================ */
+
+  var now = function(){ return new Date(); };
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var preview = location.hash === '#onizleme';
+  var gate = document.getElementById('gate'), site = document.getElementById('site');
+  var pad = function(n){ return String(n).padStart(2,'0'); };
+
+  function tickGate(){
+    var ms = DOGUM_GUNU - now();
+    if (ms <= 0){ openSite(true); return; }
+    var s = Math.floor(ms/1000);
+    document.getElementById('g-d').textContent = pad(Math.floor(s/86400));
+    document.getElementById('g-h').textContent = pad(Math.floor(s%86400/3600));
+    document.getElementById('g-m').textContent = pad(Math.floor(s%3600/60));
+    document.getElementById('g-s').textContent = pad(s%60);
+  }
+  /* kilidi hackle: her denemede farklı cevap */
+  var HACK = [
+    'Bu sistemi senior bir IT\'ci koruyor. Junior olsaydım belki açardın 😎',
+    'Hacker tespit edildi: Yasemin. Cezası: 1 sarılma 🤗',
+    'Sabır, sevgilim. Az kaldı 😊',
+    'Hâlâ erken 😄',
+    'Hata kodu 2011: Sürpriz henüz fırında 🎂',
+    'Admin şifresi "yaseminiseviyorum" idi. Tahmin ettin, değiştirdim 😄',
+    'Kızımıza sorma, bu sefer stajyere de şifre vermedim 🤫',
+    'Sistem güncelleniyor… Tahmini süre: geri sayım kadar ⏳',
+    'Bu kadar meraklısın demek. Güzel, plan işliyor 😌',
+    'Kapıyı açmanın tek yolu beklemek. Beni öpmek de olur ama kapıyı yine açmaz 😄',
+    'Sunucu şu an meşgul: senin için sürpriz hazırlıyor 👩‍💻',
+    '404: Sabır bulunamadı. Lütfen 20 Kasım\'da tekrar deneyin.',
+    'Bu kadar uğraşmana gerek yok, zaten kalbimin şifresi sende ❤️'
+  ];
+  var hackN = 0, hackBtn = document.getElementById('hack');
+  hackBtn.addEventListener('click', function(){
+    var term = document.getElementById('term'), l1 = document.getElementById('term-l1'), bar = document.getElementById('term-bar'),
+        deny = document.getElementById('term-deny'), msg = document.getElementById('term-msg'), cnt = document.getElementById('term-count');
+    var lock = document.getElementById('padlock');
+    hackBtn.disabled = true; term.hidden = false;
+    lock.textContent = '🔓'; lock.classList.remove('jig');
+    deny.textContent = ''; msg.textContent = ''; bar.style.transition = 'none'; bar.style.width = '0';
+    var steps = ['> kilit kırılıyor…', '> şifre deneniyor: ********', '> güvenlik duvarı aşılıyor…'];
+    l1.textContent = steps[hackN % steps.length];
+    var pct = 70 + Math.floor(Math.random() * 29);
+    requestAnimationFrame(function(){ bar.style.transition = 'width 1.1s cubic-bezier(.3,.7,.3,1)'; bar.style.width = pct + '%'; });
+    setTimeout(function(){
+      deny.textContent = '✖ ERİŞİM REDDEDİLDİ (%' + pct + '\'de yakalandın)';
+      msg.textContent = HACK[hackN % HACK.length];
+      hackN++;
+      cnt.textContent = 'Deneme sayısı: ' + hackN;
+      lock.textContent = '🔒'; void lock.offsetWidth; lock.classList.add('jig');
+      hackBtn.disabled = false;
+      hackBtn.lastChild.textContent = hackN < 3 ? ' Bir daha dene' : (hackN < 8 ? ' Pes etmek yok, tekrar dene' : ' Hâlâ mı? Peki, bir daha dene');
+    }, 1300);
+  });
+
+  var gateTimer;
+  function openSite(celebrate){
+    clearInterval(gateTimer);
+    gate.hidden = true; site.hidden = false;
+    initSite();
+    if (celebrate) setTimeout(function(){ burst(160); }, 300);
+  }
+  if (now() < DOGUM_GUNU && !preview){
+    gate.hidden = false; tickGate(); gateTimer = setInterval(tickGate, 1000);
+  } else { openSite(true); }
+  addEventListener('hashchange', function(){ if (location.hash === '#onizleme' && !site.hidden === false) openSite(true); });
+
+  var inited = false;
+  function initSite(){
+    if (inited) return; inited = true;
+
+    /* kelimeler */
+    var ws = document.querySelectorAll('.words .w');
+    function playWords(){
+      ws.forEach(function(w){ w.classList.remove('on'); });
+      ws.forEach(function(w,i){ setTimeout(function(){ w.classList.add('on'); }, 450 + i*650); });
+    }
+    if ('IntersectionObserver' in window){
+      var played = false;
+      new IntersectionObserver(function(e){ if (e[0].isIntersecting && !played){ played = true; playWords(); } }, {threshold:.4})
+        .observe(document.getElementById('words'));
+    } else playWords();
+
+    /* sayaç */
+    function tickSince(){
+      var t = now(), y = t.getFullYear() - BASLANGIC.getFullYear();
+      var ann = new Date(BASLANGIC); ann.setFullYear(BASLANGIC.getFullYear() + y);
+      if (ann > t){ y--; ann.setFullYear(ann.getFullYear() - 1); }
+      var rest = Math.floor((t - ann)/60000);
+      document.getElementById('s-y').textContent = y;
+      document.getElementById('s-d').textContent = Math.floor(rest/1440);
+      document.getElementById('s-h').textContent = Math.floor(rest%1440/60);
+      document.getElementById('s-m').textContent = rest%60;
+    }
+    tickSince(); setInterval(tickSince, 10000);
+
+    /* film şeridi */
+    var track = document.getElementById('film'), yearEl = document.getElementById('f-year'), prog = document.getElementById('f-prog');
+    SAHNELER.forEach(function(k,i){
+      var f = document.createElement('figure'); f.className = 'frame' + (k.key || i === 0 ? ' key' : '');
+      f.innerHTML = '<div class="shot"><img src="img/'+k.foto+'.jpg" alt="" loading="lazy" draggable="false"></div><figcaption><b>Sahne '+(i+1)+'</b><span class="hand"></span></figcaption>';
+      if (k.pos) f.querySelector('img').style.objectPosition = k.pos;
+      f.querySelector('.hand').textContent = k.not;
+      track.appendChild(f);
+    });
+    var frames = track.children;
+    function current(){
+      var mid = track.scrollLeft + track.clientWidth/2, best = 0, d = 1e9;
+      for (var i=0;i<frames.length;i++){
+        var c = frames[i].offsetLeft + frames[i].offsetWidth/2, dd = Math.abs(c - mid);
+        if (dd < d){ d = dd; best = i; }
+      }
+      return best;
+    }
+    function go(i){
+      i = Math.max(0, Math.min(frames.length-1, i));
+      var f = frames[i];
+      track.scrollTo({ left: f.offsetLeft - (track.clientWidth - f.offsetWidth)/2, behavior: reduce ? 'auto' : 'smooth' });
+    }
+    var lastIdx = 0;
+    function onScroll(){
+      var i = current();
+      yearEl.textContent = (i+1) + ' / ' + SAHNELER.length;
+      for (var j=0;j<frames.length;j++) frames[j].classList.toggle('on', j === i);
+      var max = track.scrollWidth - track.clientWidth;
+      prog.style.width = (max > 0 ? (track.scrollLeft / max) * 100 : 0) + '%';
+      if (i === frames.length-1 && lastIdx !== i){ var r = frames[i].getBoundingClientRect(); burst(60, r.left + r.width/2, r.top + 40); }
+      lastIdx = i;
+    }
+    track.addEventListener('scroll', function(){ requestAnimationFrame(onScroll); }, {passive:true});
+    document.getElementById('f-prev').addEventListener('click', function(){ go(current()-1); });
+    document.getElementById('f-next').addEventListener('click', function(){ go(current()+1); });
+    track.addEventListener('keydown', function(e){
+      if (e.key === 'ArrowRight'){ e.preventDefault(); go(current()+1); }
+      if (e.key === 'ArrowLeft'){ e.preventDefault(); go(current()-1); }
+    });
+    /* bilgisayarda fareyle sürükleme */
+    var drag = null;
+    track.addEventListener('pointerdown', function(e){ if (e.pointerType !== 'mouse') return; drag = { x:e.clientX, s:track.scrollLeft }; track.classList.add('drag'); });
+    addEventListener('pointermove', function(e){ if (drag) track.scrollLeft = drag.s - (e.clientX - drag.x); });
+    addEventListener('pointerup', function(){ if (!drag) return; drag = null; track.classList.remove('drag'); go(current()); });
+    onScroll();
+
+    /* sınav */
+    var qi = 0, dots = document.getElementById('dots');
+    SORULAR.forEach(function(){ dots.appendChild(document.createElement('i')); });
+    function showQ(){
+      var Q = SORULAR[qi];
+      document.getElementById('q-no').textContent = SORULAR.length === 1 ? 'Tek soru, ama kritik 😄' : 'Soru ' + (qi+1) + ' / ' + SORULAR.length;
+      document.getElementById('q-text').textContent = Q.q;
+      document.getElementById('q-reward').textContent = '';
+      var opts = document.getElementById('q-opts'); opts.innerHTML = '';
+      Q.o.forEach(function(o,j){
+        var b = document.createElement('button'); b.type = 'button'; b.className = 'opt'; b.textContent = o;
+        b.addEventListener('click', function(){
+          if (j === Q.a){
+            b.classList.add('ok');
+            document.getElementById('q-reward').textContent = Q.r;
+            dots.children[qi].classList.add('done');
+            var r = b.getBoundingClientRect(); burst(40, r.left + r.width/2, r.top);
+            opts.querySelectorAll('button').forEach(function(x){ x.disabled = true; });
+            setTimeout(function(){
+              qi++;
+              if (qi < SORULAR.length) showQ();
+              else {
+                document.getElementById('q-no').textContent = 'Tebrikler';
+                document.getElementById('q-text').textContent = 'Tam puan! Zaten başka türlüsünü beklemiyordum.';
+                opts.innerHTML = ''; document.getElementById('q-reward').textContent = 'Sınavı geçtin! Kutunun kilidi açıldı, hediyen aşağıda ↓';
+                passed = true; document.getElementById('gift-hint').textContent = 'Kilit açıldı! Dokun bakalım…';
+                document.getElementById('gift').classList.add('shake');
+              }
+            }, 1800);
+          } else {
+            b.classList.add('no');
+            document.getElementById('q-reward').textContent = 'Hmm, bir daha dene 🙂';
+          }
+        });
+        opts.appendChild(b);
+      });
+    }
+    showQ();
+
+    /* hediye: buket + pasta */
+    var NS = 'http://www.w3.org/2000/svg';
+    function el(tag, attrs, parent){ var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+    var bq = document.getElementById('bouquet'), sway = el('g', {'class':'sway'}, bq);
+    var FL = [
+      {x:100,y:-150,c:'#E3175A',r:20,t:'rose'},
+      {x:58, y:-118,c:'#FFF6F2',r:17,t:'daisy'},
+      {x:142,y:-122,c:'#FF8FB1',r:18,t:'rose'},
+      {x:30, y:-62, c:'#FFC23A',r:15,t:'tulip'},
+      {x:170,y:-66, c:'#FFF6F2',r:15,t:'daisy'},
+      {x:78, y:-78, c:'#FF8FB1',r:15,t:'tulip'},
+      {x:124,y:-84, c:'#E3175A',r:15,t:'rose'},
+      {x:100,y:-100,c:'#FFC23A',r:14,t:'daisy'}
+    ];
+    var stems = [], blooms = [];
+    FL.forEach(function(f,i){
+      var cx = 100 + (f.x - 100) * .25, cy = f.y + (110 - f.y) * .55;
+      var st = el('path', {'class':'stem', d:'M100 112 Q'+cx+' '+cy+' '+f.x+' '+f.y}, sway);
+      stems.push(st);
+      var t = .55, mx = (1-t)*(1-t)*100 + 2*(1-t)*t*cx + t*t*f.x, my = (1-t)*(1-t)*112 + 2*(1-t)*t*cy + t*t*f.y;
+      var lf = el('ellipse', {'class':'leaf', cx:mx+9, cy:my, rx:10, ry:4.5, transform:'rotate('+(f.x<100?200:-20)+' '+mx+' '+my+')'}, sway);
+      lf.style.transitionDelay = (0.9 + i*.12) + 's';
+      var g = el('g', {'class':'bloom'}, sway);
+      if (f.t === 'rose'){
+        for (var k=0;k<6;k++){ var a2 = k*60*Math.PI/180; el('circle', {cx:f.x+Math.cos(a2)*f.r*.55, cy:f.y+Math.sin(a2)*f.r*.55, r:f.r*.55, fill:f.c, stroke:'#2B0D1E','stroke-width':2.5}, g); }
+        el('circle', {cx:f.x, cy:f.y, r:f.r*.6, fill:f.c, stroke:'#2B0D1E','stroke-width':2.5}, g);
+        el('path', {d:'M'+(f.x-f.r*.3)+' '+f.y+' a'+f.r*.3+' '+f.r*.3+' 0 1 1 '+f.r*.35+' '+f.r*.25, fill:'none', stroke:'#2B0D1E','stroke-width':2.2,'stroke-linecap':'round'}, g);
+      } else if (f.t === 'daisy'){
+        for (var k2=0;k2<10;k2++) el('ellipse', {cx:f.x, cy:f.y-f.r*.62, rx:f.r*.24, ry:f.r*.55, fill:f.c, stroke:'#2B0D1E','stroke-width':2, transform:'rotate('+(k2*36)+' '+f.x+' '+f.y+')'}, g);
+        el('circle', {cx:f.x, cy:f.y, r:f.r*.36, fill:'#FFC23A', stroke:'#2B0D1E','stroke-width':2.2}, g);
+      } else {
+        el('path', {d:'M'+(f.x-f.r*.7)+' '+(f.y-f.r*.5)+' L'+(f.x-f.r*.35)+' '+(f.y-f.r*.1)+' L'+f.x+' '+(f.y-f.r*.7)+' L'+(f.x+f.r*.35)+' '+(f.y-f.r*.1)+' L'+(f.x+f.r*.7)+' '+(f.y-f.r*.5)+' Q'+(f.x+f.r*.8)+' '+(f.y+f.r*.7)+' '+f.x+' '+(f.y+f.r*.7)+' Q'+(f.x-f.r*.8)+' '+(f.y+f.r*.7)+' '+(f.x-f.r*.7)+' '+(f.y-f.r*.5)+'Z', fill:f.c, stroke:'#2B0D1E','stroke-width':2.4,'stroke-linejoin':'round'}, g);
+      }
+      g.style.transitionDelay = (1.1 + i*.14) + 's';
+      blooms.push(g);
+    });
+    /* çiçek arası küçük beyaz noktalar */
+    [[80,-130],[120,-140],[45,-90],[155,-95],[90,-60],[112,-118],[66,-100],[138,-60]].forEach(function(p,i){
+      var d = el('circle', {'class':'bloom', cx:p[0], cy:p[1], r:3.2, fill:'#FFFFFF', stroke:'#2B0D1E','stroke-width':1.4}, sway);
+      d.style.transitionDelay = (1.8 + i*.07) + 's';
+    });
+    stems.forEach(function(st,i){ var L = st.getTotalLength ? st.getTotalLength() : 300; st.style.strokeDasharray = L; st.style.strokeDashoffset = L; st.style.transitionDelay = (.35 + i*.1) + 's'; });
+
+    /* mumlar */
+    var cg = document.getElementById('candles'), CC = ['#5FC7AE','#FFC23A','#FFF6F2','#5FC7AE','#FFC23A'];
+    for (var c=0;c<5;c++){
+      var x = 70 + c*20;
+      el('rect', {x:x-4, y:52, width:8, height:30, rx:2, fill:CC[c], stroke:'#2B0D1E','stroke-width':2.5}, cg);
+      el('line', {x1:x-4, y1:62, x2:x+4, y2:58, stroke:'#E3175A','stroke-width':2}, cg);
+      el('line', {x1:x-4, y1:72, x2:x+4, y2:68, stroke:'#E3175A','stroke-width':2}, cg);
+      el('line', {x1:x, y1:52, x2:x, y2:46, stroke:'#2B0D1E','stroke-width':2}, cg);
+      var fl = el('path', {'class':'flame', d:'M'+x+' 26 C'+(x+7)+' 36 '+(x+6)+' 46 '+x+' 46 C'+(x-6)+' 46 '+(x-7)+' 36 '+x+' 26Z', fill:'#FFC23A', stroke:'#E3175A','stroke-width':1.6}, cg);
+      fl.style.animationDelay = (c*.09) + 's';
+      var sm = el('path', {'class':'smoke', d:'M'+x+' 44 c-5 -6 5 -10 0 -16 c-5 -6 5 -10 0 -14'}, cg);
+      sm.style.animationDelay = (c*.06) + 's';
+    }
+
+    var passed = false;
+    var gift = document.getElementById('gift'), opened = false, finale = document.getElementById('finale');
+    gift.addEventListener('click', function(){
+      if (opened) return;
+      if (!passed){
+        var h = document.getElementById('gift-hint');
+        h.textContent = 'Hop hop! Önce sınav 😄';
+        gift.classList.remove('nope'); void gift.offsetWidth; gift.classList.add('nope');
+        setTimeout(function(){ document.getElementById('quiz').scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'center'}); }, 900);
+        return;
+      }
+      opened = true;
+      gift.classList.remove('shake');
+      gift.setAttribute('aria-label', 'Hediye açıldı');
+      var lid = document.getElementById('lid');
+      lid.style.transition = 'transform .7s cubic-bezier(.3,1.6,.5,1)';
+      lid.style.transformOrigin = '100px 90px';
+      lid.style.transform = innerWidth < 600 ? 'translate(58px,40px) rotate(24deg)' : 'translate(118px,-20px) rotate(38deg)';
+      document.getElementById('gift-hint').textContent = '';
+      finale.classList.add('open');
+      document.getElementById('cake-col').hidden = false;
+      document.getElementById('reveal').hidden = false;
+      requestAnimationFrame(function(){ requestAnimationFrame(function(){
+        bq.classList.add('bloomed');
+        stems.forEach(function(st){ st.style.strokeDashoffset = 0; });
+      }); });
+      setTimeout(function(){ document.getElementById('flower-note').hidden = false; }, 1800);
+      setTimeout(function(){ var r = gift.getBoundingClientRect(); burst(160, r.left + r.width/2, r.top); }, 1700);
+    });
+    document.getElementById('blow').addEventListener('click', function(){
+      var cake = document.getElementById('cake');
+      cake.classList.add('out'); this.disabled = true;
+      document.getElementById('wish').textContent = 'Dileğin kabul olsun ✨';
+      var r = cake.getBoundingClientRect(); burst(140, r.left + r.width/2, r.top + 20);
+    });
+  }
+
+  /* ==================== müzik ==================== */
+  var mBtn = document.getElementById('music'), mTxt = document.getElementById('music-txt');
+  var audio = new Audio('muzik.mp3'); audio.loop = true; audio.preload = 'auto'; audio.volume = 0;
+  var playing = false, started = false, fadeT = null, VOL = .85;
+  function fade(to, ms, done){
+    clearInterval(fadeT); var from = audio.volume, t0 = Date.now();
+    fadeT = setInterval(function(){
+      var k = Math.min(1, (Date.now() - t0) / ms);
+      audio.volume = Math.max(0, Math.min(1, from + (to - from) * k));
+      if (k >= 1){ clearInterval(fadeT); if (done) done(); }
+    }, 40);
+  }
+  function setUI(on){
+    mBtn.classList.toggle('on', on); mBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    mBtn.setAttribute('aria-label', on ? 'Müziği kapat' : 'Müziği aç');
+    mTxt.classList.remove('hide'); mTxt.textContent = on ? 'Müzik açık' : 'Müzik kapalı';
+    if (on) setTimeout(function(){ if (playing) mTxt.classList.add('hide'); }, 2500);
+  }
+  function play(){
+    var pr = audio.play();
+    playing = true; setUI(true); fade(VOL, 2500);
+    if (pr && pr.catch) pr.catch(function(){ playing = false; setUI(false); mTxt.textContent = 'Müzik için dokun'; started = false; });
+  }
+  function pause(){ playing = false; setUI(false); fade(0, 700, function(){ if (!playing) audio.pause(); }); }
+  mBtn.addEventListener('click', function(e){ e.stopPropagation(); started = true; playing ? pause() : play(); });
+  /* sayfada ilk dokunuşta müzik kendiliğinden başlar */
+  function firstTouch(e){ if (started || (e && e.target && e.target.closest && e.target.closest('#music'))) return; started = true; play(); }
+  document.addEventListener('pointerdown', firstTouch); document.addEventListener('keydown', firstTouch);
+  var wasPlaying = false;
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden){ wasPlaying = playing; if (playing){ audio.pause(); } }
+    else if (wasPlaying){ var pr = audio.play(); if (pr && pr.catch) pr.catch(function(){}); }
+  });
+
+  /* ==================== konfeti ==================== */
+  var cv = document.getElementById('confetti'), ctx = cv.getContext('2d'), parts = [], running = false;
+  var colors = ['#E3175A','#FFC23A','#5FC7AE','#2B0D1E','#FFFFFF'];
+  function size(){ var d = window.devicePixelRatio||1; cv.width = innerWidth*d; cv.height = innerHeight*d; ctx.setTransform(d,0,0,d,0,0); }
+  size(); addEventListener('resize', size);
+  function burst(n, x, y){
+    if (reduce) return;
+    x = x == null ? innerWidth/2 : x; y = y == null ? innerHeight/3 : y;
+    for (var i=0;i<n;i++){
+      var a = Math.random()*Math.PI*2, v = 4 + Math.random()*9;
+      parts.push({x:x,y:y,vx:Math.cos(a)*v,vy:Math.sin(a)*v - 4,r:Math.random()*Math.PI,vr:(Math.random()-.5)*.3,
+        w:6+Math.random()*7,h:4+Math.random()*5,c:colors[i%colors.length],life:0,heart:Math.random()<.18});
+    }
+    if (!running){ running = true; requestAnimationFrame(step); }
+  }
+  function heart(x,y,s){
+    ctx.beginPath(); ctx.moveTo(x, y + s*.3);
+    ctx.bezierCurveTo(x, y, x - s*.5, y, x - s*.5, y + s*.3);
+    ctx.bezierCurveTo(x - s*.5, y + s*.6, x, y + s*.8, x, y + s);
+    ctx.bezierCurveTo(x, y + s*.8, x + s*.5, y + s*.6, x + s*.5, y + s*.3);
+    ctx.bezierCurveTo(x + s*.5, y, x, y, x, y + s*.3); ctx.fill();
+  }
+  function step(){
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+    parts = parts.filter(function(p){ return p.life < 220 && p.y < innerHeight + 40; });
+    parts.forEach(function(p){
+      p.life++; p.vy += .22; p.vx *= .985; p.x += p.vx; p.y += p.vy; p.r += p.vr;
+      ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.r); ctx.fillStyle = p.c;
+      if (p.heart){ ctx.fillStyle = '#E3175A'; heart(0,-6,14); } else ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+      ctx.restore();
+    });
+    if (parts.length) requestAnimationFrame(step); else { running = false; ctx.clearRect(0,0,innerWidth,innerHeight); }
+  }
+})();
+</script>
+
+</body>
+</html>
