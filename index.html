@@ -53,7 +53,15 @@ section{padding-block:72px}
 #confetti{position:fixed;inset:0;pointer-events:none;z-index:50;width:100%;height:100%}
 
 /* ---------- gate ---------- */
-.gate{min-height:100%;display:grid;place-items:center;text-align:center;padding-block:56px}
+.gate{min-height:100%;display:grid;place-items:center;text-align:center;padding-block:40px 56px;position:relative;overflow:hidden}
+.gate-in{position:relative;z-index:1}
+.gate-cake{display:block;width:150px;height:auto;margin:0 auto 14px;overflow:visible;animation:bob 4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.gate-cake .glow circle{fill:#FFC23A;opacity:.18;transform-box:fill-box;transform-origin:center;animation:glow 1.6s ease-in-out infinite alternate}
+@keyframes glow{from{transform:scale(.8);opacity:.1}to{transform:scale(1.15);opacity:.25}}
+.hearts{position:absolute;inset:0;pointer-events:none;z-index:0}
+.hearts span{position:absolute;bottom:-40px;color:var(--hot);opacity:0;animation:floatup linear infinite}
+@keyframes floatup{0%{transform:translateY(0) translateX(0) rotate(-8deg);opacity:0}12%{opacity:var(--o)}50%{transform:translateY(-55vh) translateX(18px) rotate(6deg)}88%{opacity:var(--o)}100%{transform:translateY(-110vh) translateX(-10px) rotate(-6deg);opacity:0}}
 .gate .lock{font-family:var(--display);font-size:clamp(3rem,13vw,7.5rem);line-height:.9}
 .gate .lock em{color:var(--hot)}
 .hack{margin-top:22px;display:inline-flex;align-items:center;gap:10px;border:3px solid var(--ink);background:var(--ink);color:var(--paper);border-radius:999px;padding:13px 24px;font-weight:800;font-size:1rem;box-shadow:5px 5px 0 var(--hot);transition:transform .15s, box-shadow .15s}
@@ -341,9 +349,30 @@ footer{border-top:3px solid var(--ink);padding-block:20px 40px;display:flex;just
 
 <!-- ===================== KAPI (20 Kasım'a kadar) ===================== -->
 <div id="gate" class="gate" lang="tr" hidden>
-  <div>
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
+  <div class="gate-in">
+    <svg class="gate-cake" viewBox="0 0 220 190" aria-hidden="true">
+      <g class="glow"><circle cx="70" cy="34" r="16"/><circle cx="110" cy="28" r="18"/><circle cx="150" cy="34" r="16"/></g>
+      <ellipse cx="110" cy="176" rx="90" ry="10" fill="#2B0D1E" opacity=".12"/>
+      <ellipse cx="110" cy="170" rx="86" ry="11" fill="#FFF6F2" stroke="#2B0D1E" stroke-width="4"/>
+      <rect x="34" y="112" width="152" height="56" rx="8" fill="#E3175A" stroke="#2B0D1E" stroke-width="4"/>
+      <path d="M34 121 h152 v7 c-8 0-8 11-15 11s-8-11-15-11-8 14-15 14-8-14-15-14-8 9-15 9-8-9-15-9-8 13-15 13-8-13-15-13-8 9-15 9-8-9-17-9z" fill="#FFF6F2" stroke="#2B0D1E" stroke-width="3" stroke-linejoin="round"/>
+      <g fill="#FFC23A"><circle cx="56" cy="154" r="3.5"/><circle cx="86" cy="158" r="3.5"/><circle cx="116" cy="152" r="3.5"/><circle cx="146" cy="158" r="3.5"/><circle cx="170" cy="152" r="3.5"/></g>
+      <rect x="56" y="74" width="108" height="42" rx="8" fill="#FFD4CB" stroke="#2B0D1E" stroke-width="4"/>
+      <path d="M56 83 h108 v6 c-7 0-7 9-13 9s-7-9-13-9-7 11-13 11-7-11-13-11-7 8-13 8-7-8-13-8-7 11-13 11-7-11-13-11-6 7-15 7z" fill="#FFF6F2" stroke="#2B0D1E" stroke-width="3" stroke-linejoin="round"/>
+      <g stroke="#2B0D1E" stroke-width="2.5">
+        <rect x="66" y="48" width="8" height="28" rx="2" fill="#5FC7AE"/>
+        <rect x="106" y="42" width="8" height="34" rx="2" fill="#FFC23A"/>
+        <rect x="146" y="48" width="8" height="28" rx="2" fill="#5FC7AE"/>
+      </g>
+      <g stroke="#E3175A" stroke-width="2"><path d="M66 58 l8 -4 M66 68 l8 -4 M106 54 l8 -4 M106 64 l8 -4 M146 58 l8 -4 M146 68 l8 -4"/></g>
+      <g stroke="#2B0D1E" stroke-width="2"><path d="M70 48 v-6 M110 42 v-6 M150 48 v-6"/></g>
+      <path class="flame" d="M70 22 C77 32 76 42 70 42 C64 42 63 32 70 22Z" fill="#FFC23A" stroke="#E3175A" stroke-width="1.6"/>
+      <path class="flame" style="animation-delay:.15s" d="M110 16 C117 26 116 36 110 36 C104 36 103 26 110 16Z" fill="#FFC23A" stroke="#E3175A" stroke-width="1.6"/>
+      <path class="flame" style="animation-delay:.3s" d="M150 22 C157 32 156 42 150 42 C144 42 143 32 150 22Z" fill="#FFC23A" stroke="#E3175A" stroke-width="1.6"/>
+    </svg>
     <div class="eyebrow">Sadece Yasemin için · özel sayı</div>
-    <div class="lock">Henüz <em>erken</em>,<br>sevgilim.</div>
+    <div class="lock" id="lock-h">Henüz <em>erken</em>,<br>sevgilim.</div>
     <div class="count" aria-live="polite">
       <div><b id="g-d">00</b><span>gün</span></div>
       <div><b id="g-h">00</b><span>saat</span></div>
@@ -612,6 +641,11 @@ footer{border-top:3px solid var(--ink);padding-block:20px 40px;display:flex;just
     var ms = DOGUM_GUNU - now();
     if (ms <= 0){ openSite(true); return; }
     var s = Math.floor(ms/1000);
+    var head = s < 3600 ? 'Az kaldı,<br><em>sakın uyuma</em> 😄'
+             : s < 86400 ? 'Yarın senin<br><em>günün!</em>'
+             : s < 7*86400 ? 'Bir haftadan<br><em>az</em> kaldı 👀'
+             : 'Henüz <em>erken</em>,<br>sevgilim.';
+    var lh = document.getElementById('lock-h'); if (lh.dataset.h !== head){ lh.innerHTML = head; lh.dataset.h = head; }
     document.getElementById('g-d').textContent = pad(Math.floor(s/86400));
     document.getElementById('g-h').textContent = pad(Math.floor(s%86400/3600));
     document.getElementById('g-m').textContent = pad(Math.floor(s%3600/60));
@@ -655,6 +689,20 @@ footer{border-top:3px solid var(--ink);padding-block:20px 40px;display:flex;just
       hackBtn.lastChild.textContent = hackN < 3 ? ' Bir daha dene' : (hackN < 8 ? ' Pes etmek yok, tekrar dene' : ' Hâlâ mı? Peki, bir daha dene');
     }, 1300);
   });
+
+  /* belli belirsiz uçan kalpler */
+  (function(){
+    var box = document.getElementById('hearts'); if (!box) return;
+    for (var i=0;i<7;i++){
+      var h = document.createElement('span'); h.textContent = '♥';
+      h.style.left = (6 + i*13 + Math.random()*6) + '%';
+      h.style.fontSize = (14 + Math.random()*16) + 'px';
+      h.style.setProperty('--o', (0.10 + Math.random()*0.10).toFixed(2));
+      h.style.animationDuration = (16 + Math.random()*10) + 's';
+      h.style.animationDelay = (-Math.random()*20) + 's';
+      box.appendChild(h);
+    }
+  })();
 
   var gateTimer;
   function openSite(celebrate){
