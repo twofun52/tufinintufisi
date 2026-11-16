@@ -583,7 +583,7 @@ footer{border-top:3px solid var(--ink);padding-block:20px 40px;display:flex;just
             <path d="M52 90 h116 v6 c-7 0-7 10-14 10s-7-10-14-10-7 12-14 12-7-12-14-12-7 8-14 8-7-8-14-8-7 12-14 12-7-12-14-12z" fill="#FFF6F2" stroke="#2B0D1E" stroke-width="3" stroke-linejoin="round"/>
             <g id="candles"></g>
           </svg>
-          <p class="cake-line">Yeni yaşın, bugüne kadarki en güzel yaşın olsun. Benim dileğim 14 yıl önce gerçekleşti, şimdi sıra sende.</p>
+          <p class="cake-line">Bu pastanın kalorisi sıfır. Dijital olmanın tek avantajı 😄</p>
           <button class="blow" id="blow" type="button">Dilek tut, mumları üfle</button>
           <p class="hand wish" id="wish" aria-live="polite"></p>
         </div>
@@ -920,7 +920,7 @@ footer{border-top:3px solid var(--ink);padding-block:20px 40px;display:flex;just
     document.getElementById('blow').addEventListener('click', function(){
       var cake = document.getElementById('cake');
       cake.classList.add('out'); this.disabled = true;
-      document.getElementById('wish').textContent = 'Dileğin kabul olsun ✨';
+      document.getElementById('wish').textContent = 'Dileğin kaydedildi. Bilgi güvenliği gereği kimseyle paylaşılmayacak 🔒😄';
       var r = cake.getBoundingClientRect(); burst(140, r.left + r.width/2, r.top + 20);
     });
   }
