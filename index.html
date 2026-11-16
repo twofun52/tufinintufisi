@@ -163,6 +163,8 @@ section{padding-block:72px}
 .drawing{position:relative;margin:22px auto 0;max-width:420px;background:#fff;padding:14px 14px 10px;border-radius:4px;box-shadow:0 18px 40px -18px rgba(43,13,30,.45);transform:rotate(-2deg);text-align:center}
 .drawing .ph{aspect-ratio:4/3;max-width:100%;display:grid;place-items:center;padding:16px;font-weight:600;color:var(--ink-soft);border:3px dashed var(--paper-2);border-radius:4px}
 .drawing figcaption{margin-top:8px}
+@media (max-width:600px){.fridge .drawing{max-width:calc(100% - 34px);margin-left:0}.fridge::after{right:14px;width:12px}}
+.drawing .art{display:block;width:100%;aspect-ratio:4/3;max-width:100%;object-fit:cover;border-radius:2px}
 @media (max-width:760px){.qa{grid-template-columns:1fr}.interview{padding:20px}.kid .cal{gap:8px}.day{padding:12px 10px}}
 .pill{display:inline-block;margin-top:24px;background:var(--hot);color:#fff;border:0;border-radius:999px;padding:12px 22px;font-weight:800;letter-spacing:.04em}
 
@@ -504,7 +506,7 @@ footer{border-top:3px solid var(--ink);padding-block:20px 40px;display:flex;just
         <div class="fridge-label">Evimizin en değerli sanat galerisi: buzdolabı kapısı</div>
         <figure class="drawing">
           <i class="tape t1"></i><i class="tape t2"></i>
-          <div class="ph">Buraya kızımızın çizdiği resim gelecek</div>
+          <img class="art" src="img/resim.jpg" alt="Kızımızın çizdiği resim: annesi, kendisi ve babası el ele" loading="lazy">
           <figcaption class="hand">Küçük ressamımızdan, sevgiyle</figcaption>
         </figure>
         <span class="heart-magnet" aria-hidden="true">♥</span>
